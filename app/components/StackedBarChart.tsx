@@ -7,7 +7,6 @@ import { localPoint } from '@visx/event';
 import { LegendOrdinal } from '@visx/legend';
 import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
 
-// Assuming questionnaireData is imported from your JSON file
 import questionnaireData  from '../data/questionnaire.json';
 
 // Define an interface for the props
