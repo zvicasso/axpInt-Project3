@@ -15,7 +15,6 @@ interface YearlyData {
     scores: number[]
 }
 
-
 // Define an interface for the props
 interface StackedBarChartProps {
     width: number;
@@ -30,6 +29,16 @@ interface StackedBarChartProps {
 
 // Define the keys for the stack
 const keys = ['Mild', 'Moderate', 'Moderate Severe', 'Severe'];
+// Extract scores for each year
+const quartileData = Object.values(questionnaireData).map(d => {
+    return {
+      year: d.year,
+      ...d.scores.reduce((acc, score, i) => {
+        acc[keys[i]] = score;
+        return acc;
+      }, {}),
+    };
+  });
 
 // Create scales
 const xScale = scaleBand<string>({
@@ -72,7 +81,7 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
           strokeOpacity={0.1}
         />
         <BarStack
-          data={Object.values(questionnaireData)}
+          data={quartileData}
           keys={keys}
           x={(d) => String(d.year)}
           xScale={xScale}
