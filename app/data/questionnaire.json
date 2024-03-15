@@ -1,0 +1,30 @@
+{
+    "2017": {
+        "Total Students": 106,
+        "Scores": [20, 35, 45, 6]
+    },
+    "2018": {
+        "Total Students": 107,
+        "Scores": [15, 30, 40, 22]
+    },
+    "2019": {
+        "Total Students": 123,
+        "Scores": [10, 25, 50, 38]
+    },
+    "2020": {
+        "Total Students": 118,
+        "Scores": [8, 20, 40, 50]
+    },
+    "2021": {
+        "Total Students": 75,
+        "Scores": [5, 15, 30, 25]
+    },
+    "2022": {
+        "Total Students": 77,
+        "Scores": [3, 10, 25, 39]
+    },
+    "2023": {
+        "Total Students": 81,
+        "Scores": [2, 8, 20, 51]
+    }
+}
