@@ -23,7 +23,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="bg-anxpurple-300">
+      <body>
         <Outlet />
         <Scripts />
         <LiveReload />
