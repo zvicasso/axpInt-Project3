@@ -140,15 +140,15 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
           <AxisBottom top={yMax} scale={xScale}/>
         </Group>
       </svg>
-      <LegendOrdinal scale={colorScale}  >
+      <LegendOrdinal scale={colorScale} >
           {labels => (
-            <div className="flex flex-row my-2">
+            <div className="flex flex-row flex-wrap my-2">
               {labels.map((label, i) => (
                 <div key={`legend-${i}`} className="flex items-center mx-6">
                   <svg className="w-4 h-4" viewBox="0 0 15 15">
                     <circle cx="7.5" cy="7.5" r="7.5" fill={label.value} />
                   </svg>
-                  <span className="ml-2 text-md font-semibold">{label.text}</span>
+                  <span className="ml-2 py-1 font-semibold text-xs md:text-sm lg:text-base">{label.text}</span>
                 </div>
               ))}
             </div>
