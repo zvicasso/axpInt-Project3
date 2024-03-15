@@ -3,6 +3,8 @@ import { BarStack } from '@visx/shape';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale';
 import { Grid } from '@visx/grid';
+import { useTooltip, useTooltipInPortal, defaultStyles } from '@visx/tooltip';
+
 
 // Assuming questionnaireData is imported from your JSON file
 import questionnaireData  from '../data/questionnaire.json';
@@ -59,6 +61,17 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
   xScale.rangeRound([0, xMax]);
   yScale.range([yMax, 0]);
 
+  const {
+    tooltipOpen,
+    tooltipData,
+    tooltipTop,
+    tooltipLeft,
+    showTooltip,
+    hideTooltip
+  } = useTooltip();
+  
+  const { containerRef, TooltipInPortal } = useTooltipInPortal();
+
   return (
     <svg width={width} height={height}>
       <rect x={0} y={0} width={width} height={height} fill="#fff" />
@@ -89,11 +102,40 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
                   height={bar.height}
                   width={bar.width}
                   fill={bar.color}
+                  onMouseMove={(event) => {
+                    const top = event.clientY - event.currentTarget.getBoundingClientRect().top;
+                    const left = event.clientX - event.currentTarget.getBoundingClientRect().left;
+                    showTooltip({
+                      tooltipData: bar,
+                      tooltipTop: top,
+                      tooltipLeft: left
+                    });
+                  }}
+                  onMouseLeave={() => hideTooltip()}
                 />
               ))
             )
           }
         </BarStack>
+        {tooltipOpen && (
+            <TooltipInPortal
+              top={tooltipTop}
+              left={tooltipLeft}
+              style={{
+                ...defaultStyles,
+                backgroundColor: 'rgba(0, 0, 0, 0.9)',
+                color: 'white',
+                padding: '0.5rem',
+                borderRadius: '4px',
+                fontSize: '14px',
+              }}
+            >
+              <div>
+                <strong>{tooltipData.key}</strong>: {tooltipData.bar.data[tooltipData.key]}
+              </div>
+            </TooltipInPortal>
+          )}
+
         <AxisLeft scale={yScale} />
         <AxisBottom top={yMax} scale={xScale}/>
       </Group>
