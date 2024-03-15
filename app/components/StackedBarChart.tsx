@@ -50,6 +50,7 @@ const colorScale = scaleOrdinal<string, string>({
 });
 
 export default function StackedBarChart( {width, height, margin}:StackedBarChartProps ){
+    
   // Set the dimensions of the graph
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -94,7 +95,7 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
           }
         </BarStack>
         <AxisLeft scale={yScale} />
-        <AxisBottom top={yMax} scale={xScale} />
+        <AxisBottom top={yMax} scale={xScale}/>
       </Group>
     </svg>
   );
