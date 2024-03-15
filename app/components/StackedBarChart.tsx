@@ -1,4 +1,3 @@
-import React from 'react';
 import { Group } from '@visx/group';
 import { BarStack } from '@visx/shape';
 import { AxisBottom, AxisLeft } from '@visx/axis';
@@ -112,16 +111,3 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
 
 // Define your margin object
 const margin = { top: 20, right: 20, bottom: 20, left: 40 };
-
-// Render the chart component in your main App component
-function App() {
-  // Set your width and height
-  const width = 800;
-  const height = 600;
-
-  return (
-    <div>
-     
-    </div>
-  );
-}
