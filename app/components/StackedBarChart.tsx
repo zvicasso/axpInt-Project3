@@ -7,13 +7,6 @@ import { Grid } from '@visx/grid';
 // Assuming questionnaireData is imported from your JSON file
 import questionnaireData  from '../data/questionnaire.json';
 
-// Define the data structure for the questionnaire objects
-interface YearlyData {
-    year: number
-    totalStudents : number,
-    scores: number[]
-}
-
 // Define an interface for the props
 interface StackedBarChartProps {
     width: number;
@@ -26,8 +19,9 @@ interface StackedBarChartProps {
     };
   }
 
-// Define the keys for the stack
+// Define the keys for the stacked bar chart
 const keys = ['Mild', 'Moderate', 'Moderate Severe', 'Severe'];
+
 // Extract scores for each year
 const quartileData = Object.values(questionnaireData).map(d => {
     return {
@@ -54,9 +48,6 @@ const colorScale = scaleOrdinal<string, string>({
   domain: keys,
   range: ['#00a687', '#fec200', '#ee7309', '#ff4063'],
 });
-
-// Define your margin object
-type Margin = { top: number, right: number, bottom: number, left: number };
 
 export default function StackedBarChart( {width, height, margin}:StackedBarChartProps ){
   // Set the dimensions of the graph
@@ -108,6 +99,3 @@ export default function StackedBarChart( {width, height, margin}:StackedBarChart
     </svg>
   );
 }
-
-// Define your margin object
-const margin = { top: 20, right: 20, bottom: 20, left: 40 };

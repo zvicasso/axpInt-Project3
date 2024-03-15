@@ -24,18 +24,18 @@ const margin = { top: 20, right: 20, bottom: 20, left: 40 };
 export default function Index() {
   return (
     <>
-      <div> 
+      <div className='flex flex-col justify-center items-center'> 
         <StackedBarChart width={width} height={height} margin={margin} />
         
-        <LegendOrdinal scale={colorScale} direction="row" labelMargin="0 15px 0 0">
+        <LegendOrdinal scale={colorScale}  >
           {labels => (
-            <div className="flex flex-row">
+            <div className="flex flex-row my-2">
               {labels.map((label, i) => (
-                <div key={`legend-${i}`} className="flex items-center mx-2">
+                <div key={`legend-${i}`} className="flex items-center mx-6">
                   <svg className="w-4 h-4" viewBox="0 0 15 15">
                     <circle cx="7.5" cy="7.5" r="7.5" fill={label.value} />
                   </svg>
-                  <span className="ml-2 text-md">{label.text}</span>
+                  <span className="ml-2 text-md font-bold">{label.text}</span>
                 </div>
               ))}
             </div>
